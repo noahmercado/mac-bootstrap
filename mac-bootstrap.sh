@@ -11,49 +11,50 @@ xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Tap cask for GUI tools
-brew tap caskroom/cask
+brew tap homebrew/cask
 
 # Cask installs
-brew cask install postman 
-brew cask install google-chrome 
-brew cask install visual-studio-code 
-brew cask install slack 
-brew cask install spotify 
-brew cask install iterm2 
-brew cask install docker 
+brew install --cask postman \
+                    google-chrome \
+                    visual-studio-code \
+                    slack \
+                    spotify \
+                    iterm2  \
+                    docker \
+                    drawio \
+                    google-cloud-sdk
 
 # Brew installs
-brew install git
-brew install python
-brew install pipenv
-brew install go
-brew install zsh
-brew install kubernetes-helm
-brew install docker-machine
-brew install kubectl
-brew install warrensbox/tap/tfswitch
-brew install wget
-brew install nmap
-brew install speedtest-cli
+brew install git \
+             python \
+             pipenv \
+             go \
+             node \
+             zsh \
+             kubernetes-helm \
+             docker-machine \
+             kubectl \
+             warrensbox/tap/tfswitch \
+             wget \
+             map \
+             speedtest-cli \
+             yq \
+             azure-cli
 
 # Pip installs
-pip install requests
-pip install boto3 botocore
-pip install urllib3
-pip install awscli
-pip install virtualenv
-pip install numpy pandas
-pip install pytest
-pip install flask
+pip install requests \
+            boto3 botocore \
+            urllib3 \
+            awscli \
+            pytest
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # upgrade_oh_my_zsh
 
 # Set gopath
-export PATH=${HOME}/go/bin:$PATH
-source ~/.bash_profile
-
+echo 'export PATH="${HOME}/go/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
 
 ##################################################
 #           macOS configuration
@@ -101,11 +102,11 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 ##################################################
 
 # Download AWS icons 
-mkdir -p ${HOME}/Pictures/AWS/
+# mkdir -p ${HOME}/Pictures/AWS/
 
-cd ${HOME}/Pictures/AWS/
-curl https://d1.awsstatic.com/webteam/architecture-icons/AWS-Architecture-Icons_PNG_20191031.2d59c1fa62de714961b0a1d664b6753c6d808306.zip --output ${HOME}/Pictures/AWS/AWS-Architecture-Icons_PNG.zip
-curl https://d1.awsstatic.com/webteam/architecture-icons/AWS-Architecture-Icons_SVG_20191031.37913bbe8450d38bc7acc50cc40fe0c2135d650c.zip --output ${HOME}/Pictures/AWS/AWS-Architecture-Icons_SVG.zip
+# cd ${HOME}/Pictures/AWS/
+# curl https://d1.awsstatic.com/webteam/architecture-icons/AWS-Architecture-Icons_PNG_20191031.2d59c1fa62de714961b0a1d664b6753c6d808306.zip --output ${HOME}/Pictures/AWS/AWS-Architecture-Icons_PNG.zip
+# curl https://d1.awsstatic.com/webteam/architecture-icons/AWS-Architecture-Icons_SVG_20191031.37913bbe8450d38bc7acc50cc40fe0c2135d650c.zip --output ${HOME}/Pictures/AWS/AWS-Architecture-Icons_SVG.zip
 
-unzip AWS-Architecture-Icons_PNG.zip
-unzip AWS-Architecture-Icons_SVG.zip
+# unzip AWS-Architecture-Icons_PNG.zip
+# unzip AWS-Architecture-Icons_SVG.zip

@@ -2,7 +2,11 @@
 A bash script for configuring a new Macbook as a development environment
 
 
-## How To
+## Prerequisites
+Install xcode developer tools
+  - `xcode-select --install`
+  
+## How To  
 ``` bash
 xcode-select --install
 

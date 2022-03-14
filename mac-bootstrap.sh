@@ -35,7 +35,7 @@ brew install go \
              kubectl \
              warrensbox/tap/tfswitch \
              wget \
-             map \
+             nmap \
              speedtest-cli \
              yq \
              azure-cli \

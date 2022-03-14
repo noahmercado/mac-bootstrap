@@ -53,8 +53,6 @@ cp -r dotfiles ${HOME}/.dotfiles
 
 sed -i '' "s#HOME_DIR#${HOME}#g" "${HOME}/.zshrc"
 
-source ${HOME}/.zshrc
-
 ##################################################
 #           VS Code configuration
 ##################################################
@@ -145,3 +143,5 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+source ${HOME}/.zshrc

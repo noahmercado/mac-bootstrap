@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
+set -e 
+
+trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+trap 'echo "\"${last_command}\" command exited with exit code $?."' exit
+
 ##################################################
 #           Developer tool installs & config
 ##################################################
 
 # Install homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Tap cask for GUI tools
 brew tap homebrew/cask

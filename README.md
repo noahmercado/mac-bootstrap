@@ -8,5 +8,5 @@ Install xcode developer tools
   
 ## How To  
 ``` bash
-curl -s https://raw.githubusercontent.com/noahmercado/mac-bootstrap/master/mac-bootstrap.sh | sudo bash -s
+sudo curl -s https://raw.githubusercontent.com/noahmercado/mac-bootstrap/master/mac-bootstrap.sh | bash -s
 ```

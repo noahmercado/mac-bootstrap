@@ -5,7 +5,7 @@
 #
 # Example aliases
 alias zshconfig="code ${HOME}/.zshrc"
-alias ohmyzsh="mate ${HOME}/.oh-my-zsh"
+alias ohmyzsh="code ${HOME}/.oh-my-zsh"
 alias zshreload="source ${HOME}/.zshrc"
 
 # alias argolis_auth='function _argolis_auth(){ echo "Switching gcloud CLI to Argolis admin profile..." && gcloud config set account admin@noahmercado.altostrat.com && echo "$@" };_argolis_auth()'

@@ -43,7 +43,6 @@ brew install go \
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-omz update
 
 # Clone git repo
 git clone https://github.com/noahmercado/mac-bootstrap.git && cd mac-bootstrap

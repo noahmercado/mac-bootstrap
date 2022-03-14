@@ -47,7 +47,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 omz update
 
 # Clone git repo
-git clone git@github.com:noahmercado/mac-bootstrap.git && cd mac-bootstrap
+git clone https://github.com/noahmercado/mac-bootstrap.git && cd mac-bootstrap
 
 # Setup dotfiles
 cp .zshrc ${HOME}/.zshrc

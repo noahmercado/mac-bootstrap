@@ -12,6 +12,8 @@ trap 'echo "\"${last_command}\" command exited with exit code $?."' exit
 # Install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Tap cask for GUI tools
 brew tap homebrew/cask
 

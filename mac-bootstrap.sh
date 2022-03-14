@@ -91,10 +91,17 @@ then
     curl -u "$GITHUB_USER:$GITHUB_TOKEN" -X POST -d "$payload" https://api.github.com/user/keys
 fi
 
-# Copy ssh config file
-cp sshconfig "${HOME}/.ssh/config"
+ssh_config_path="${HOME}/.ssh/config"
 
-sed -i '' "s#KEY_PATH#${key_path}#g" "${HOME}/.ssh/config"
+if [[ ! -f "${ssh_config_path}" ]]
+then
+    # Copy ssh config file
+    cp sshconfig ${ssh_config_path}
+else
+    echo "" >> ${ssh_config_path}
+    cat sshconfig >> ${ssh_config_path}
+fi
+sed -i '' "s#KEY_PATH#${key_path}#g" "${ssh_config_path}"
 
 ##################################################
 #           macOS configuration

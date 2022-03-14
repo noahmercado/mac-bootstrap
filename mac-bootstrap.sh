@@ -29,12 +29,10 @@ brew install --cask postman \
                     google-cloud-sdk
 
 # Brew installs
-brew install git \
-             python \
-             pipenv \
+brew install python \
              go \
              node \
-             kubernetes-helm \
+             helm \
              kubectl \
              warrensbox/tap/tfswitch \
              wget \

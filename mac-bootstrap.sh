@@ -29,8 +29,7 @@ brew install --cask postman \
                     google-cloud-sdk
 
 # Brew installs
-brew install python \
-             go \
+brew install go \
              node \
              helm \
              kubectl \

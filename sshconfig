@@ -1,0 +1,6 @@
+Host github.com github
+    User git
+    Port 22
+    Hostname github.com
+    PreferredAuthentications publickey
+    IdentityFile KEY_PATH

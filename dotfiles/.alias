@@ -1,0 +1,14 @@
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+alias zshconfig="code ${HOME}/.zshrc"
+alias ohmyzsh="mate ${HOME}/.oh-my-zsh"
+alias zshreload="source ${HOME}/.zshrc"
+
+# alias argolis_auth='function _argolis_auth(){ echo "Switching gcloud CLI to Argolis admin profile..." && gcloud config set account admin@noahmercado.altostrat.com && echo "$@" };_argolis_auth()'
+alias dev-rebuild="devcontainer build --no-cache"
+alias dev="devcontainer"
+alias vs="devcontainer open"

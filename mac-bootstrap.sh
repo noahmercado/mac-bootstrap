@@ -30,31 +30,71 @@ brew install git \
              pipenv \
              go \
              node \
-             zsh \
              kubernetes-helm \
-             docker-machine \
              kubectl \
              warrensbox/tap/tfswitch \
              wget \
              map \
              speedtest-cli \
              yq \
-             azure-cli
-
-# Pip installs
-pip install requests \
-            boto3 botocore \
-            urllib3 \
-            awscli \
-            pytest
+             azure-cli \
+             awscli
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-# upgrade_oh_my_zsh
+omz update
 
-# Set gopath
-echo 'export PATH="${HOME}/go/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
+# Setup dotfiles
+cp .zshrc ${HOME}/.zshrc
+cp -r dotfiles ${HOME}/.dotfiles
+
+sed -i '' "s#HOME_DIR#${HOME}#g" "${HOME}/.zshrc"
+
+source ${HOME}/.zshrc
+
+##################################################
+#           VS Code configuration
+##################################################
+ln -s "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" /usr/local/bin/code
+
+# Install VS Code extensions
+while IFS= read -r e; do
+  code --install-extension $e
+done < extensions.txt
+
+
+##################################################
+#          Git configuration
+##################################################
+
+mkdir -p "${HOME}/.ssh"
+
+# Create ssh key
+key_path="${HOME}/.ssh/github"
+create_key_cmd="ssh-keygen -t ed25519 -f $key_path -N \"\""
+if [[ "$USER_EMAIL" != "" ]]
+then
+    create_key_cmd+=" -C $USER_EMAIL"
+fi
+
+eval $create_key_cmd
+
+# Add to SSH agent
+ssh-add "${key_path}"
+
+# Conditionally upload public key to Github
+pub_key=`cat ${key_path}.pub`
+
+if [[ "$GITHUB_TOKEN" != "" ]] && [[ "$GITHUB_USER" != "" ]]
+then
+    payload="{\"title\":\"`hostname`\",\"key\":\"$pub_key\"}"
+    curl -u "$GITHUB_USER:$GITHUB_TOKEN" -X POST -d "$payload" https://api.github.com/user/keys
+fi
+
+# Copy ssh config file
+cp sshconfig "${HOME}/.ssh/config"
+
+sed -i '' "s#KEY_PATH#${key_path}#g" "${HOME}/.ssh/config"
 
 ##################################################
 #           macOS configuration
@@ -65,7 +105,7 @@ source ~/.zshrc
 osascript -e 'tell application "System Preferences" to quit'
 
 # Create code directory and set it as default dir for new finder windows
-mkdir ~/Code
+mkdir ${HOME}/Code
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Code/"
 
@@ -76,8 +116,8 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write com.apple.finder QuitMenuItem -bool true
 
 # Configure screenshot save directory
-mkdir ~/Screenshots
-defaults write com.apple.screencapture location ~/Screenshots
+mkdir ${HOME}/Screenshots
+defaults write com.apple.screencapture location ${HOME}/Screenshots
 
 # Enable dark mode
 defaults write "Apple Global Domain" "AppleInterfaceStyle" "Dark"
@@ -95,18 +135,3 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
-
-##################################################
-#           Asset Downloads
-##################################################
-
-# Download AWS icons 
-# mkdir -p ${HOME}/Pictures/AWS/
-
-# cd ${HOME}/Pictures/AWS/
-# curl https://d1.awsstatic.com/webteam/architecture-icons/AWS-Architecture-Icons_PNG_20191031.2d59c1fa62de714961b0a1d664b6753c6d808306.zip --output ${HOME}/Pictures/AWS/AWS-Architecture-Icons_PNG.zip
-# curl https://d1.awsstatic.com/webteam/architecture-icons/AWS-Architecture-Icons_SVG_20191031.37913bbe8450d38bc7acc50cc40fe0c2135d650c.zip --output ${HOME}/Pictures/AWS/AWS-Architecture-Icons_SVG.zip
-
-# unzip AWS-Architecture-Icons_PNG.zip
-# unzip AWS-Architecture-Icons_SVG.zip
